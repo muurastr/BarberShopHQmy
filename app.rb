@@ -14,5 +14,8 @@ class Barber < ActiveRecord::Base
 end
 
 get '/' do
+	#инициализация переменной barbers
+	#выбор всех! записей из таблицы
+	@barbers = Barber.all
 	erb :index
 end
