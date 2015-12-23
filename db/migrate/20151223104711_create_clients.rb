@@ -3,6 +3,7 @@ class CreateClients < ActiveRecord::Migration
   	#метод create_table принимает параметр в виде символа с именем табицы (здесь client)
   	create_table :client do |t|
   		#в таблице client буду созданы столбцы name, phone... типа text
+  		#id будет создан автоматически
   		t.text :name
   		t.text :phone
   		t.text :datestamp
