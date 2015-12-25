@@ -7,17 +7,49 @@ require 'sinatra/activerecord'
 set :database, "sqlite3:barbershop.db"
 #создать класс, кот будет представлять сущность
 #что-то, что описывает (клиент, barber...)
-class Client < ActiveRecord::Base
-end
 
 class Barber < ActiveRecord::Base
 end
 
-get '/' do
+class Client < ActiveRecord::Base
+end
+
+before do
 	#инициализация переменной barbers
 	#выбор всех! записей из таблицы
-	#@barbers = Barber.all
+	@barbers = Barber.all
 	#или сортировка
-	@barbers = Barber.order "created_at DESC"
+	#@barbers = Barber.order "created_at DESC"
+end
+	
+get '/' do
 	erb :index
+end
+
+get '/visit' do
+	erb :visit
+end
+
+get '/contacts' do
+	erb :contact
+end
+
+post '/visit' do
+	@username = params[:username]
+	@phone = params[:phone]
+	@datatime = params[:datetime]
+	@barber = params[:barber]
+	@color = params[:color]
+
+	#сохранение данных
+	#новые переменные
+	c = Client.new
+	c.name = @username
+	c.name = @phone
+	c.datestamp = @satetime
+	c.barber = @barber
+	c.color = @color
+	c.save
+
+	erb "<h2>Спасибо за запись!</h2>"
 end
