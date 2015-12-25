@@ -35,20 +35,8 @@ get '/contacts' do
 end
 
 post '/visit' do
-	@username = params[:username]
-	@phone = params[:phone]
-	@datatime = params[:datetime]
-	@barber = params[:barber]
-	@color = params[:color]
 
-	#сохранение данных
-	#новые переменные
-	c = Client.new
-	c.name = @username
-	c.name = @phone
-	c.datestamp = @satetime
-	c.barber = @barber
-	c.color = @color
+	c = Client.new params[:client]
 	c.save
 
 	erb "<h2>Спасибо за запись!</h2>"
