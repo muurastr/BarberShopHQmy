@@ -35,7 +35,9 @@ get '/' do
 	erb :index
 end
 
+#получение страницы
 get '/visit' do
+	@c = Client.new
 	erb :visit
 end
 
@@ -45,14 +47,14 @@ end
 
 post '/visit' do
 
-	c = Client.new params[:client]
-	if c.save
+	@c = Client.new params[:client]
+	if @c.save
 		erb "<h2>Спасибо за запись!</h2>"
 	else
 #у нашей модели "c" есть св-во errors, 
 #у errors него есть класс=массив full_messages
 #у кот есть метод first, кот возвращает 1 элемент массива
-		@error = c.errors.full_messages.first
+		@error = @c.errors.full_messages.first
 		erb :visit
 	end
 
