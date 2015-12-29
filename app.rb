@@ -9,6 +9,10 @@ set :database, "sqlite3:barbershop.db"
 #что-то, что описывает (клиент, barber...)
 
 class Barber < ActiveRecord::Base
+	
+end
+
+class Client < ActiveRecord::Base
 	#вызов метода (name = параметр, кот нужно проверить, 
 		#далее метод принимает хеш (все, что после запятой - presence: true))
 	validates :name, presence: true
@@ -17,9 +21,6 @@ class Barber < ActiveRecord::Base
 	validates :color, presence: true
 	#или
 	#validates :name, presence => true
-end
-
-class Client < ActiveRecord::Base
 end
 
 before do
@@ -45,7 +46,11 @@ end
 post '/visit' do
 
 	c = Client.new params[:client]
-	c.save
+	if c.save
+		erb "<h2>Спасибо за запись!</h2>"
+	else
+		erb "<h2>Ошибка</h2>"
+	end
 
-	erb "<h2>Спасибо за запись!</h2>"
+	
 end
