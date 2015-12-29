@@ -9,6 +9,14 @@ set :database, "sqlite3:barbershop.db"
 #что-то, что описывает (клиент, barber...)
 
 class Barber < ActiveRecord::Base
+	#вызов метода (name = параметр, кот нужно проверить, 
+		#далее метод принимает хеш (все, что после запятой - presence: true))
+	validates :name, presence: true
+	validates :phone, presence: true
+	validates :datestamp, presence: true
+	validates :color, presence: true
+	#или
+	#validates :name, presence => true
 end
 
 class Client < ActiveRecord::Base
