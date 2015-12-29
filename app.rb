@@ -15,7 +15,7 @@ end
 class Client < ActiveRecord::Base
 	#вызов метода (name = параметр, кот нужно проверить, 
 		#далее метод принимает хеш (все, что после запятой - presence: true))
-	validates :name, presence: true
+	validates :name, presence: true, length: { minimum: 3 }
 	validates :phone, presence: true
 	validates :datestamp, presence: true
 	validates :color, presence: true
