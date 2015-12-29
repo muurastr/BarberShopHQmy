@@ -49,7 +49,11 @@ post '/visit' do
 	if c.save
 		erb "<h2>Спасибо за запись!</h2>"
 	else
-		erb "<h2>Ошибка</h2>"
+#у нашей модели "c" есть св-во errors, 
+#у errors него есть класс=массив full_messages
+#у кот есть метод first, кот возвращает 1 элемент массива
+		@error = c.errors.full_messages.first
+		erb :visit
 	end
 
 	
